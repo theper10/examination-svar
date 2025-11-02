@@ -44,7 +44,7 @@ a) Förklara skillnaden mellan en klass och ett objekt, använd gärna en analog
 
 b) Vad innebär det om en klass benämns static? Ex: `public static class File`
 
-**Svar 2B**: Om en klass benämns static innebär det att klassen inte behöver instansieras, inga objekt behöver skapas för att kunna nyttja en static klass och dess medlemmar. "Ex: `public static class File`", i denna klass finns det kanske en metod för "Save" för att kunna spara en fil, då kan man bara köra t.ex File.Save("text.txt"); utan att behöva skapa en instans innan.
+**Svar 2B**: Om en klass benämns static innebär det att klassen inte behöver instansieras, inga objekt behöver skapas för att kunna nyttja en static klass och dess medlemmar. "Ex: `public static class File`", i denna klass finns det kanske en metod för "Save" för att kunna spara en fil, då kan man bara köra t.ex `File.Save("text.txt");` utan att behöva skapa en instans innan.
 Om en klass benämns static innebär det också att klassen bara får innehålla static-benämnda medlemmar.
 
 ---
@@ -79,13 +79,17 @@ När man skapar ett nytt objekt med `new` keyword så innebär det just det, man
 
 **Förklara skillnaden mellan ett field och en property i C#.** Ge exempel på när man bör använda respektive.
 
-**Svar 4**: Field är endast en variabel i en klass medan en property är en variabel + metoder för att hämta (get;) och sätta (set;) värdet för variabeln.
+**Svar 4**: Field är endast en variabel i en klass medan en property är en variabel + logik för att hämta (get;) och sätta (set;) värdet för variabeln.
 
 ---
 
 ### Fråga 5 - Inkapsling
 
 **Vad är inkapsling (encapsulation) och varför är det viktigt?** Förklara skillnaden mellan `private` och `public`, och när man bör använda vad.
+
+**Svar 5**: Inkapsling menas att man skapar lager över det man vill inkapsla och därmed döljer interna detaljer. 
+T.ex om jag har en vill lagra pengar och har en `private decimal _balance;` då vill jag helst inkapsla denna field så att man inte ändrar värdet på `_balance` direkt, 
+då kan jag istället skapa en property `public decimal Balance ..` så att `_balance` är inkapslat och så kan jag sätta mina kontroller på hur det ska få hämtas och sättas genom get och set metoderna. Skillnaden på private och public är att private endast kan hittas och användas i klassen den är inskriven i. public kan hittas och användas vart som helst.
 
 ---
 
@@ -94,7 +98,32 @@ När man skapar ett nytt objekt med `new` keyword så innebär det just det, man
 **Förklara följande:**
 
 a) Vad är skillnaden mellan en metod som returnerar något (t.ex. `int`) och en `void` metod?  
+
+En metod som returnerar något, t.ex `int` måste alltid ha en return som returnerar ett värde för rätt typ för att metoden ska fungera. T.ex:
+```public int Addition()
+{
+  return x + y;
+}
+```
+Medan en `void` metod inte får returnera ett värde. T.ex:
+```public void HelloWorld()
+{
+  Console.WriteLine("Hello world!");
+}
+```
 b) Vad innebär det att en metod är `static`?
+
+**Svar 6b**: Om en metod är static innebär att metoden tillhör klassen och inte ett objekt, vilket betyder att jag inte behöver skapa ett objekt av klassen för att kunna använda metoden. T.ex
+```public class Calculator
+{
+  public static double Addition(double x, double y)
+  {
+    return x + y;
+  }
+}
+```
+i detta exempel så kan jag kalla på metoden i Main utan att behöva skapa ett nytt objekt, såhär: `Calculator.Addition(x, y)` 
+Ett exempel i verkligheten kan se ut såhär: `double result = Calculator.Addition(2.5, 8);`.
 
 ---
 
@@ -104,8 +133,13 @@ b) Vad innebär det att en metod är `static`?
 
 **C# och .NET kan användas för att bygga olika typer av applikationer.**
 
-a) Nämn minst tre olika typer av applikationer man kan bygga med C# och .NET (t.ex. console)  
-b) Beskriv kort vad dessa applikationstyper har för syfte.
+a) Nämn minst tre olika typer av applikationer man kan bygga med C# och .NET (t.ex. console) 
+
+**Svar 7a**: Skrivbordsapplikationer, mobilapplikationer och konsolapplikationer. 
+
+b) Beskriv kort vad dessa applikationstyper har för syfte. 
+
+**Svar 7b**: Skrivbordsapplikationer är program med UI som har som syfte att köras på datorer. Mobilapplikationer är program med UI som är designat att köras på t.ex smartphones och surfplattor. Konsolapplikationer är textbaserade program som körs i konsolen, det kan användas i t.ex utbildningssyfte och testkod bland annat.
 
 ---
 
@@ -113,8 +147,13 @@ b) Beskriv kort vad dessa applikationstyper har för syfte.
 
 **Vi har fokuserat på konsolapplikationer (Console Application) i kursen.**
 
-a) Vad är en konsolapplikation?  
-b) Ge ett exempel på när en konsolapplikation kan vara lämplig att använda.
+a) Vad är en konsolapplikation? 
+
+**Svar 8a**: En konsolapplikation är ett textbaserat program som körs i konsolen. 
+
+b) Ge ett exempel på när en konsolapplikation kan vara lämplig att använda. 
+
+**Svar 8b**: I utbildning för att snabbare kunna hoppa in i syntax inlärning och annat teoretiskt utan att behöva bygga ett UI.
 
 ---
 
@@ -124,12 +163,26 @@ b) Ge ett exempel på när en konsolapplikation kan vara lämplig att använda.
 
 **Beskriv följande datatyper och när man använder dem:**
 
-a) `int`  
-b) `double`  
-c) `string`  
+a) `int` 
+
+**Svar 8a**: Datatypen `int` håller ett värde av ett nummertal där decimaler inte är tillåtna. T.ex `int num = 114;`
+
+b) `double` 
+
+**Svar 8b**: Datatypen `double` håller ett värde av ett nummertal där upp till 16 decimaler stödjs. T.ex `double num = 114.38174`
+
+c) `string` 
+
+**Svar 8c**: Datatypen `string` håller ett värde av en sträng av datatypen `char`. 
+T.ex `string introduce = "Jag heter Theodore";` detta är en sträng av `char` `"J"` `"a"` `"g"` osv. 
+
 d) `bool`
 
-Förklara också skillnaden mellan `int` och `double`.
+**Svar 8d**: Datatypen `bool` håller ett värde av antingen true eller false. T.ex `bool verified = false;` eller `bool verified = true;` 
+
+e) Förklara också skillnaden mellan `int` och `double`. 
+
+**Svar 8e**: Skillnaden mellan en `int` och `double` är att `int` inte får innehålla ett värde av decimaler medan `double` får innehålla ett värde av decimaler.
 
 ---
 
@@ -138,7 +191,12 @@ Förklara också skillnaden mellan `int` och `double`.
 **C# är ett starkt typat språk, medan JavaScript är löst typat.**
 
 a) Vad innebär det att ett språk är starkt typat?  
+
+**Svar 10a**: Att ett språk är starkt typat innebär att datatyper är viktiga och strikt kontrollerade. Man måste ange rätt datatyp och förhålla sig till den datatypen om man inte explicit konverterar datatypen till en annan. T.ex C#: `string name = "Theodore";` I ett löst typat språk som JavaScript kan man skriva: `let name = "Theodore";` och sedan skriva `name = 58;` helt lagligt utan explicit konvertering, det löst typade språket konverterar datatypen automatiskt.
+
 b) Ge ett exempel på en fördel med stark typning som du märkt av i C#.
+
+**Svar 10b**: Jag tycker att koden blir extremt mycket tydligare och risken för oförutsedda buggar är mycket mindre.
 
 ---
 
@@ -147,8 +205,18 @@ b) Ge ett exempel på en fördel med stark typning som du märkt av i C#.
 **Förklara skillnaden mellan en array och en `List<T>` i C#.**
 
 a) När bör man använda en array?  
-b) När bör man använda en `List<T>`?  
-c) Skriv ett kort kodexempel (1-3 rader) som visar hur man lägger till ett element i en `List<int>`.
+
+**Svar 11a**: En array bör användas när man vet i förväg antalet man vill förvara i arrayen. T.ex om jag vet att jag vill förvara 10st int datatyper och aldrig vill förändra antalet så passar en array perfekt. 
+
+b) När bör man använda en `List<T>`? 
+
+**Svar 11b**: en `List<T>` bör användas när jag är osäker på antalet jag kommer förvara i listan eller om jag vill ta bort eller lägga till i listan vid ett senare tillfälle. 
+
+c) Skriv ett kort kodexempel (1-3 rader) som visar hur man lägger till ett element i en List<int>. 
+
+**Svar 11c**: 
+`List<int> numbers = new();` 
+`numbers.Add(5);`
 
 ---
 
@@ -158,6 +226,8 @@ c) Skriv ett kort kodexempel (1-3 rader) som visar hur man lägger till ett elem
 
 Förklara med egna ord och ge två exempel på scenarion där Dictionary är ett bra val (inget kodexempel krävs).
 
+**Svar 12**: Dictionary kan vara ett bra val i ett scenario där man vill slå upp spelarna i olika fotbollslag. T.ex "Barcelona": "Lamine", "Raphinha", "Pedri" osv. Dictionary kan även vara ett bra val i ett scenario där man exempelvis vill konvertera landskoder till landsnamn. T.ex "DK": "Danmark" "SV": "Sverige" osv
+
 ---
 
 ### Fråga 13 - LINQ
@@ -165,6 +235,8 @@ Förklara med egna ord och ge två exempel på scenarion där Dictionary är ett
 **Vad är LINQ och vad används det till?**
 
 Ge exempel på minst två LINQ-metoder du använt (t.ex. `Where`, `Select`, `OrderBy`, `Count`, etc.) och förklara kort vad de gör.
+
+**Svar 13**: Man kan t.ex använda `Where` för att filtrera smycken som har ett värde under 2000kr och använda en `Count` på det för att få fram hur många smycken som har ett värde under 2000kr. `Where` används alltså för att filtrera fram objekt utifrån ett vilkor, t.ex: smycken under 2000kr eller personer med färre än 10 fingrar osv. `Count` används för att få fram antalet objekt som uppfyller ett villkor.
 
 ---
 
