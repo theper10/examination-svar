@@ -55,7 +55,8 @@ Om en klass benämns static innebär det också att klassen bara får innehålla
 
 **Svar 3**: En konstruktor är en metod som existerar i alla klasser. Konstruktorns syfte är att initiera ett objekt och om konstruktorn har parametrar så kommer den kräva att alla parametrar den blivit tilldelad uppfylls när ett objekt av klassen skapas. T.ex: om jag har följande klass, property och parameter;
 
-```public class Person 
+```
+public class Person 
 {
   public string Name { get; }
 
@@ -100,13 +101,15 @@ då kan jag istället skapa en property `public decimal Balance ..` så att `_ba
 a) Vad är skillnaden mellan en metod som returnerar något (t.ex. `int`) och en `void` metod?  
 
 En metod som returnerar något, t.ex `int` måste alltid ha en return som returnerar ett värde för rätt typ för att metoden ska fungera. T.ex:
-```public int Addition()
+```
+public int Addition()
 {
   return x + y;
 }
 ```
 Medan en `void` metod inte får returnera ett värde. T.ex:
-```public void HelloWorld()
+```
+public void HelloWorld()
 {
   Console.WriteLine("Hello world!");
 }
@@ -114,7 +117,8 @@ Medan en `void` metod inte får returnera ett värde. T.ex:
 b) Vad innebär det att en metod är `static`?
 
 **Svar 6b**: Om en metod är static innebär att metoden tillhör klassen och inte ett objekt, vilket betyder att jag inte behöver skapa ett objekt av klassen för att kunna använda metoden. T.ex
-```public class Calculator
+```
+public class Calculator
 {
   public static double Addition(double x, double y)
   {
@@ -122,7 +126,7 @@ b) Vad innebär det att en metod är `static`?
   }
 }
 ```
-i detta exempel så kan jag kalla på metoden i Main utan att behöva skapa ett nytt objekt, såhär: `Calculator.Addition(x, y)` 
+i detta exempel så kan jag kalla på metoden i Main utan att behöva skapa ett nytt objekt, såhär: `Calculator.Addition(x, y)`.
 Ett exempel i verkligheten kan se ut såhär: `double result = Calculator.Addition(2.5, 8);`.
 
 ---
